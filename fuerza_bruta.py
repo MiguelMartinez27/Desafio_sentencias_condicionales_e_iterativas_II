@@ -1,20 +1,20 @@
-from string import ascii_lowercase
 import getpass
+from string import ascii_lowercase
 
-def fuerza_bruta(password):
-    intentos = 0
-    encontrado = ''
+#Solicitar la contrasena de manera oculta
+password = getpass.getpass("Ingrese la contraseña: ").strip().lower()
 
-    for letra in password:
-        for posible in ascii_lowercase:
-            intentos += 1
-            if posible == letra:
-                encontrado += posible
-                break
+intentos = 0
 
-    return intentos
+guessed_password = ""
 
+#Realiza la busqueda de fuerza bruta
+for char in password: 
+    for letter in ascii_lowercase:
+        intentos += 1
+        if char == letter:
+            guessed_password += letter
+            break
 
-password = getpass.getpass("Ingrese la contraseña: ").lower()  # Oculta la entrada y convierte a minúsculas
-intentos = fuerza_bruta(password)
-print(f"La contraseña fue forzada en {intentos} intentos")
+print(f"La contraseña fue forzada en {intentos} intentos.")
+print(f"La contraseña adivinada es: {guessed_password}")
