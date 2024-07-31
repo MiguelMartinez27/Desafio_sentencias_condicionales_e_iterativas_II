@@ -1,37 +1,33 @@
 import sys
 
-def meses_mayores_a_umbral(umbral, datos):   # Diccionario para almacenar los resultados
-    resultado = {}
-    
-    # Itera sobre los elementos del diccionario original
-    for mes, valor in datos.items():      # Si el valor supera el umbral, añadir al diccionario de resultados
-        if valor > umbral:
-            resultado[mes] = valor
-    
-    
-    return resultado  # Devolver el diccionario filtrado
+#Diccionario de ventas proporcionado
+ventas = {
+    "Enero" : 15000,
+    "Febrero" : 22000,
+    "Marzo" : 12000,
+    "Abril" : 17000,
+    "Mayo" : 81000,
+    "Junio" : 13000,
+    "Julio" : 21000,
+    "Agosto" : 41200,
+    "Septiembre" : 25000,
+    "Octubre" : 21500,
+    "Noviembre" : 91000,
+    "Diciembre" : 21000,
+}
 
-try:
-    umbral = int(sys.argv[1])
-except (IndexError, ValueError):
-    print("Debe proporcionar un umbral válido como argumento.")
+if len(sys.argv) != 2:
     sys.exit(1)
 
-# Diccionario con los datos de ejemplo
-datos = {
-    'Enero': 25000,
-    'Febrero': 15000,
-    'Marzo': 30000,
-    'Abril': 35000,
-    'Mayo': 81000,
-    'Junio': 20000,
-    'Julio': 19000,
-    'Agosto': 41200,
-    'Septiembre': 10000,
-    'Octubre': 29000,
-    'Noviembre': 91000,
-    'Diciembre': 23000
-} 
-# Obtiene los meses que superan el umbral
-resultado = meses_mayores_a_umbral(umbral, datos)
-print(resultado)
+try: 
+    umbral = int(sys.argv[1])
+except ValueError:
+    print("El umbral debe ser un numero entero.")
+    sys.exit(1)
+
+
+#Filtrar los meses que superan el umbral 
+ventas_filtradas = {mes: valor for mes, valor in ventas.items() if valor > umbral}
+
+#Resultado
+print(ventas_filtradas)
